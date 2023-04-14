@@ -1,32 +1,46 @@
-# Simple Commands System
+# Simple Commands System 🏷️
 
-## How to install
-Add the package "nanos-commands" to packages_requirements of your project in Package.toml. 
-```
-    ...
-    packages_requirements = [
-        "nanos-commands",
-    ]
-    ...
-```
-Add the next ligne in your Index.lua of your Server dir
-```
-Package.RequirePackage("nanos-commands")
-```
+This package allows you to add custom commands into Nanos Word. Works on both Server & Client Sides.
+This command system is actually based on the Events system of Nanos World. Meaning that you will need to create a new event for each command you want to add into the game.
 
-## Exemple
+## How to install 📤
 
-Setup new command :
+- Download `nanos-commands` and add it into your `Server/Packages/` folder of your Nanos World Server
+- Load `nanos-commands` into your project : 
+    - Add it to the `packages_requirements` section of your project Package.toml file. 
+
+        ```
+            packages_requirements = [
+                "nanos-commands",
+            ]
+        ```
+    - Add it to the list of packages into `/NanosWorldServer/Config.toml`
+
+        ```
+            packages = [
+                "nanos-commands",
+            ]
+        ```
+
+## Functions ⚙️
+
+### 🔵🟠 **`AddCommand`**
+
+Register a new chat command
+
 ```lua
-AddCommand("ouch", "command:ouch") -- AddCommand("your_chat_command", "event_call_when_command_executed")
+AddCommand("chat_cmd_name","event_to_call")
 ```
 
-Add event of the new command :
+## Example 📝
+
+Register a "ouch" commands that execute the associated event when called.
 ```lua
+AddCommand("ouch", "command:ouch")
+
 Events.Subscribe("command:ouch", function(player, value)
-    local character = player:GetControlledCharacter()
-
-    character:ApplyDamage(tonumber(value))
+    if player:GetControlledCharacter() == nil or value == nil then return end
+    player:GetControlledCharacter():ApplyDamage(tonumber(value))
     return true
 end)
 ```
