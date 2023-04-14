@@ -1,8 +1,8 @@
-# Simple Commands System
+# Simple Commands System 🏷️
 
-This package allows you to add custom commands into Nanos Word. 
+This package allows you to add custom commands into Nanos Word. Works on both Server & Client Sides.
 
-## How to install
+## How to install 📤
 
 - Download `nanos-commands` and add it into your `Server/Packages/` folder of your Nanos World Server
 - Load `nanos-commands` into your project : 
@@ -21,7 +21,7 @@ This package allows you to add custom commands into Nanos Word.
             ]
         ```
 
-## Functions 
+## Functions ⚙️
 
 ### 🔵🟠 **`AddCommand`**
 
@@ -31,7 +31,7 @@ Register a new chat command
 AddCommand("chat_cmd_name","event_to_call")
 ```
 
-## Exemple
+## Example 📝
 
 Register a "ouch" commands that execute the associated event when called.
 ```lua
