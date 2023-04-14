@@ -1,32 +1,45 @@
 # Simple Commands System
 
+This package allows you to add custom commands into Nanos Word. 
+
 ## How to install
-Add the package "nanos-commands" to packages_requirements of your project in Package.toml. 
-```
-    ...
-    packages_requirements = [
-        "nanos-commands",
-    ]
-    ...
-```
-Add the next ligne in your Index.lua of your Server dir
-```
-Package.RequirePackage("nanos-commands")
+
+- Download `nanos-commands` and add it into your `Server/Packages/` folder of your Nanos World Server
+- Load `nanos-commands` into your project : 
+    - Add it to the `packages_requirements` section of your project Package.toml file. 
+
+        ```
+            packages_requirements = [
+                "nanos-commands",
+            ]
+        ```
+    - Add it to the list of packages into `/NanosWorldServer/Config.toml`
+
+        ```
+            packages = [
+                "nanos-commands",
+            ]
+        ```
+
+## Functions 
+
+### 🔵🟠 **`AddCommand`**
+
+Register a new chat command
+
+```lua
+AddCommand("chat_cmd_name","event_to_call")
 ```
 
 ## Exemple
 
-Setup new command :
+Register a "ouch" commands that execute the associated event when called.
 ```lua
-AddCommand("ouch", "command:ouch") -- AddCommand("your_chat_command", "event_call_when_command_executed")
-```
+AddCommand("ouch", "command:ouch")
 
-Add event of the new command :
-```lua
 Events.Subscribe("command:ouch", function(player, value)
-    local character = player:GetControlledCharacter()
-
-    character:ApplyDamage(tonumber(value))
+    if player:GetControlledCharacter() == nil or value == nil then return end
+    player:GetControlledCharacter():ApplyDamage(tonumber(value))
     return true
 end)
 ```
