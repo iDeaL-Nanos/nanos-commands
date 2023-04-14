@@ -1,6 +1,7 @@
 # Simple Commands System 🏷️
 
 This package allows you to add custom commands into Nanos Word. Works on both Server & Client Sides.
+This command system is actually based on the Events system of Nanos World. Meaning that you will need to create a new event for each command you want to add into the game.
 
 ## How to install 📤
 
