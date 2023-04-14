@@ -9,3 +9,5 @@ function AddCommand(command, eventName)
     }
     return true
 end
+
+Package.Export("AddCommand", AddCommand)
